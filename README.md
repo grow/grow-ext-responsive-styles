@@ -49,9 +49,10 @@ In templates, apply responsive styles to elements:
 In templates, update the partial loop:
 
 ```
+  {% import "/extensions/responsive_styles/responsive_styles.html" as responsive_styles with context %}
   {% for partial in doc.partials %}
     ...
-    {{render_responsive_styles()}}
+    {{responsive_styles.render_responsive_styles()}}
   {% endfor %}
 ```
 `render_responsive_styles` must come __after__ all usage of
