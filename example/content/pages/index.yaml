@@ -1,0 +1,6 @@
+partials:
+- partial: foo
+  responsive_styles:
+  - '+all': 'font-family: Verdana;'
+  - '+mobile': 'font-size: 14px; color: red;'
+  - '+tablet': 'font-size: 20px; color: blue;'

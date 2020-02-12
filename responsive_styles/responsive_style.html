@@ -1,0 +1,13 @@
+{%- macro responsive_style(queries_to_styles) -%}
+  {%- if queries_to_styles -%}
+    <style scoped>
+      {%- for query, style in queries_to_styles -%}
+      @media {{query}} {
+        [{{responsive_style_id(queries_to_styles)}}] {
+          {{style}}
+        }
+      }
+      {%- endfor -%}
+    </style>
+  {%- endif -%}
+{%- endmacro -%}
