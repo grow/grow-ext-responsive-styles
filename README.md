@@ -18,9 +18,9 @@ Define named media queries in `podspec.yaml`:
 ```
 meta:
   responsive_styles:
-    '+all': '(min-width: 0)'
-    '+tablet': '(min-width: 768px)'
-    '+desktop': '(min-width: 1280px)'
+    all: '(min-width: 0)'
+    tablet: '(min-width: 768px)'
+    desktop: '(min-width: 1280px)'
 
 extensions:
   jinja2:
@@ -33,9 +33,9 @@ In YAML, specify responsive styles as needed:
 partials:
 - partial: foo
   responsive_styles:
-  - '+all': 'font-family: Verdana;'
-  - '+mobile': 'font-size: 14px; color: red;'
-  - '+tablet': 'font-size: 20px; color: blue;'
+  - all: 'font-family: Verdana; font-size: 12px;'
+  - tablet: 'font-size: 16px; color: red;'
+  - desktop: 'font-size: 24px; color: blue;'
 ```
 
 In templates, apply responsive styles to elements:
