@@ -1,4 +1,4 @@
-{% set identifiers = doc.pod.podspec.meta.get('responsive_styles') %}
+{% set identifiers = doc.pod.podspec.meta.get('responsive_styles', {}).get('media_queries', {}) %}
 
 {%- macro responsive_style(attributes_to_styles) -%}
   {%- if attributes_to_styles -%}

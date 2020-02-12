@@ -18,9 +18,10 @@ Define named media queries in `podspec.yaml`:
 ```
 meta:
   responsive_styles:
-    all: '(min-width: 0)'
-    tablet: '(min-width: 768px)'
-    desktop: '(min-width: 1280px)'
+    media_queries:
+      all: '(min-width: 0)'
+      tablet: '(min-width: 768px)'
+      desktop: '(min-width: 1280px)'
 
 extensions:
   jinja2:
