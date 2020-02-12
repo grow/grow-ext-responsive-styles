@@ -1,6 +1,6 @@
 # grow-ext-responsive-styles
 
-A Google App Engine microservice to support file uploads for static websites.
+[![Build Status](https://travis-ci.org/grow/grow-ext-responsive-styles.svg?branch=master)](https://travis-ci.org/grow/grow-ext-responsive-styles)
 
 ## Concept
 
