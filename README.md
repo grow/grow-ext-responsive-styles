@@ -15,7 +15,7 @@ elements, which doesn't natively support media queries.
 
 Define named media queries in `podspec.yaml`:
 
-```
+```yaml
 meta:
   responsive_styles:
     media_queries:
@@ -30,7 +30,7 @@ extensions:
 
 In YAML, specify responsive styles as needed:
 
-```
+```yaml
 partials:
 - partial: foo
   responsive_styles:
@@ -41,7 +41,7 @@ partials:
 
 In templates, apply responsive styles to elements:
 
-```
+```jinja2
 <div {{responsive_style_attribute(partial.responsive_styles)}}>
   ...
 </div>
@@ -49,7 +49,7 @@ In templates, apply responsive styles to elements:
 
 In templates, update the partial loop:
 
-```
+```jinja2
   {% import "/extensions/responsive_styles/responsive_styles.html" as responsive_styles with context %}
   {% for partial in doc.partials %}
     ...
