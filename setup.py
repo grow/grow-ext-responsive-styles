@@ -8,8 +8,11 @@ setup(
     license='MIT',
     author='Grow Authors',
     author_email='hello@grow.io',
-    include_package_data=False,
+    include_package_data=True,
     packages=[
         'responsive_styles',
     ],
+    package_data={
+        'responsive_styles': ['*.html'],
+    },
 )

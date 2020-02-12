@@ -5,6 +5,8 @@
     <title>Example</title>
   </head>
   <body>
+    {% import "/extensions/responsive_styles/responsive_styles.html" as responsive_styles %}
     {% for partial in doc.partials %}
       {% include '/views/partials/' ~ partial.partial ~ '.html' with context %}
+      {{responsive_styles.render_responsive_styles()}}
     {% endfor %}
