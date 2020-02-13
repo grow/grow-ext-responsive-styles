@@ -1,1 +1,1 @@
-from responsive_styles import *
+from . responsive_styles import *
