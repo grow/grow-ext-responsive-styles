@@ -21,7 +21,7 @@ def responsive_style_attribute(ctx, styles):
     if not styles:
         return ''
     doc = ctx.get('doc')
-    attribute = '-rs' + hashlib.sha1(str(styles)).hexdigest()[:4]
+    attribute = '-rs' + hashlib.sha1(str(styles).encode('utf-8')).hexdigest()[:4]
     _attribute_cache[attribute] = styles
     return attribute
 
