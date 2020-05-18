@@ -3,9 +3,9 @@
 {%- macro responsive_style(attributes_to_styles) -%}
   {%- if attributes_to_styles -%}
     <style scoped>
-    {%- for attribute, styles in attributes_to_styles.iteritems() -%}
+    {%- for attribute, styles in attributes_to_styles.items() -%}
       {%- for identifiers_to_styles in styles %}
-        {%- for identifier, style in identifiers_to_styles.iteritems() -%}
+        {%- for identifier, style in identifiers_to_styles.items() -%}
           {% set query = identifiers.get(identifier, identifier) %}
           @media {{query}} {
             [{{attribute}}] {
