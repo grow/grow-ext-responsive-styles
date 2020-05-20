@@ -1,14 +1,20 @@
+"""Responsive styling with jinja2 templates."""
+
 import hashlib
 import jinja2
 import jinja2.ext
 import os
+from grow import extensions
+from grow.extensions import hooks
 
 
 _attribute_cache = {}
 
 
-def responsive_style_id(queries_to_styles):
-    pass
+def responsive_style_id(styles):
+    if not styles:
+        return ''
+    return '-rs' + hashlib.sha1(str(styles).encode('utf-8')).hexdigest()[:4]
 
 
 @jinja2.contextfunction
@@ -21,13 +27,32 @@ def responsive_style_attribute(ctx, styles):
     if not styles:
         return ''
     doc = ctx.get('doc')
-    attribute = '-rs' + hashlib.sha1(str(styles).encode('utf-8')).hexdigest()[:4]
+    attribute = responsive_style_id(styles)
     _attribute_cache[attribute] = styles
     return attribute
 
 
-class ResponsiveStylesExtension(jinja2.ext.Extension):
+class ResponsiveStylesJinjaExtension(jinja2.ext.Extension):
     def __init__(self, env):
-        super(ResponsiveStylesExtension, self).__init__(env)
+        super(ResponsiveStylesJinjaExtension, self).__init__(env)
         env.globals['responsive_style_attribute'] = responsive_style_attribute
         env.globals['get_attribute_cache'] = get_attribute_cache
+        env.globals['responsive_style_id'] = responsive_style_id
+
+
+class ResponsiveStylesJinjaExtensionHook(hooks.JinjaExtensionHook):
+    """Handle the jinja extension hook."""
+
+    def trigger(self, previous_result, *_args, **_kwargs):
+        """Add the jinja extension to the previous result."""
+        previous_result.append(ResponsiveStylesJinjaExtension)
+        return previous_result
+
+
+class ResponsiveStylesExtension(extensions.BaseExtension):
+    """Responsive styles extension."""
+
+    @property
+    def available_hooks(self):
+        """Returns the available hook classes."""
+        return [ResponsiveStylesJinjaExtensionHook]
