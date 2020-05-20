@@ -12,10 +12,9 @@ elements, which doesn't natively support media queries.
 ### Initial setup
 
 1. Create an `extensions.txt` file within your pod.
-1. Add to the file: `git+git://github.com/grow/grow-ext-responsive-styles`
-1. Run `grow install`.
-1. Add the following sections to `podspec.yaml`:
-
+2. Add to the file: `git+git://github.com/grow/grow-ext-responsive-styles`
+3. Run `grow install`.
+4. Add the following sections to `podspec.yaml`:
 ```yaml
 ext:
 - extensions.responsive_styles.ResponsiveStylesExtension:
@@ -25,7 +24,9 @@ ext:
       desktop: '(min-width: 1280px)'
 ```
 
-1. In YAML, specify responsive styles as needed:
+### Content
+
+In the content YAML, specify responsive styles as needed:
 
 ```yaml
 partials:
@@ -36,7 +37,9 @@ partials:
     desktop: 'font-size: 24px; color: blue'
 ```
 
-1. In templates, apply responsive styles to elements:
+### Templates
+
+In templates, apply responsive styles to elements to apply the style attribute:
 
 ```jinja2
 <div {{responsive_style_attribute(partial.responsive_styles)}}>
@@ -44,7 +47,7 @@ partials:
 </div>
 ```
 
-1. In templates, update the partial loop:
+In the partial loop, add the render for the responsive styles:
 
 ```jinja2
   {% import "/extensions/responsive_styles/responsive_styles.html" as responsive_styles with context %}
