@@ -1,25 +1,21 @@
-{% set identifiers = doc.pod.podspec.meta.get('responsive_styles', {}).get('media_queries', {}) %}
+{%- set identifiers = doc.pod.extensions_controller.extension_config('extensions.responsive_styles.ResponsiveStylesExtension').media_queries or {} -%}
 
-{%- macro responsive_style(attributes_to_styles) -%}
-  {%- if attributes_to_styles -%}
+{%- macro responsive_style(media_to_styles) -%}
+  {%- if media_to_styles -%}
     <style scoped>
-    {%- for attribute, styles in attributes_to_styles.items() -%}
-      {%- for identifiers_to_styles in styles %}
-        {%- for identifier, style in identifiers_to_styles.items() -%}
-          {% set query = identifiers.get(identifier, identifier) %}
-          @media {{query}} {
-            [{{attribute}}] {
-              {{style}}
-            }
-          }
-        {%- endfor -%}
-      {%- endfor -%}
+    {%- for identifier, styles in media_to_styles.items() -%}
+      {%- set query = identifiers.get(identifier, identifier) -%}
+      @media {{query}} {
+        [{{responsive_style_id(media_to_styles)}}] {
+          {{styles}}
+        }
+      }
     {%- endfor -%}
     </style>
   {%- endif -%}
 {%- endmacro -%}
 
 {%- macro render_responsive_styles() -%}
-  {% set attributes_to_styles = get_attribute_cache() %}
-  {{responsive_style(attributes_to_styles)}}
+  {%- set media_to_styles = get_attribute_cache() -%}
+  {{responsive_style(media_to_styles)}}
 {%- endmacro -%}
